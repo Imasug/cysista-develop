@@ -1,0 +1,4 @@
+---
+prometheus:
+  retentionSize: 512MB
+  storage: 1Gi

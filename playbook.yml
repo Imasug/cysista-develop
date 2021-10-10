@@ -26,3 +26,4 @@
     - microk8s
     - ingress-nginx
     - cert-manager
+    - kube-prometheus-stack
