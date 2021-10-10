@@ -1,0 +1,18 @@
+---
+- name: Install
+  community.general.snap:
+    name: microk8s
+    classic: yes
+    channel: "1.21"
+- name: Enable addons
+  ansible.builtin.shell:
+    cmd: microk8s enable dns storage helm3
+- name: Create kubeconfig
+  ansible.builtin.shell:
+    cmd: microk8s config > ~/.kube/config
+- name: Create aliases
+  ansible.builtin.shell:
+    cmd: "snap alias {{ item.cmd }} {{ item.alias }}"
+  with_items:
+    - { cmd: microk8s.kubectl, alias: kubectl }
+    - { cmd: microk8s.helm3, alias: helm }

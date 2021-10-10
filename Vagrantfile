@@ -49,13 +49,14 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    # vb.gui = true
+  
+    # Customize the amount of memory on the VM:
+    vb.memory = "10240"
+    vb.cpus = 2
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -75,7 +76,9 @@ Vagrant.configure("2") do |config|
         "domain" => "cysista.online"
       }
     }
+    ansible.galaxy_role_file = "requirements.yml"
     ansible.playbook = "playbook.yml"
+    ansible.galaxy_command = "ansible-galaxy role install -r %{role_file} -f && ansible-galaxy collection install -r %{role_file} -f"
   end
 
 end

@@ -1,8 +1,13 @@
 ---
 - hosts: default
   gather_facts: no
+  pre_tasks:
+    - name: Refresh snap
+      ansible.builtin.shell:
+        cmd: snap refresh
   roles:
     - role: frpc
       vars:
         key_name: cysista-proxy/frps
         frpc_ini_file: frpc.ini.j2
+    - microk8s
