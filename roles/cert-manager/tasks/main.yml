@@ -1,0 +1,27 @@
+---
+- name: Add chart repo
+  kubernetes.core.helm_repository:
+    name: jetstack
+    url: https://charts.jetstack.io
+- name: Install
+  kubernetes.core.helm:
+    name: cert-manager
+    atomic: yes
+    chart_ref: jetstack/cert-manager
+    create_namespace: yes
+    namespace: cert-manager
+    update_repo_cache: yes
+    wait: yes
+    values:
+      installCRDs: true
+      ingressShim:
+        defaultIssuerName: "letsencrypt-prod"
+        defaultIssuerKind: "ClusterIssuer"
+        defaultIssuerGroup: "cert-manager.io"
+- name: Create ClusterIssuer manifest file
+  ansible.builtin.template:
+    src: letsencrypt-prod.yaml.j2
+    dest: /tmp/letsencrypt-prod.yaml
+- name: Create ClusterIssuer
+  kubernetes.core.k8s:
+    src: /tmp/letsencrypt-prod.yaml

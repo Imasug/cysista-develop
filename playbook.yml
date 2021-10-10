@@ -5,6 +5,19 @@
     - name: Refresh snap
       ansible.builtin.shell:
         cmd: snap refresh
+    - name: Update apt package list
+      ansible.builtin.apt:
+        update_cache: yes
+    - name: Install base dependencies
+      ansible.builtin.apt:
+        name: "{{ item }}"
+      with_items:
+        - python3-pip
+    - name: Install kubernetes package
+      ansible.builtin.pip:
+        name: "{{ item }}"
+      with_items:
+        - openshift
   roles:
     - role: frpc
       vars:
@@ -12,3 +25,4 @@
         frpc_ini_file: frpc.ini.j2
     - microk8s
     - ingress-nginx
+    - cert-manager
