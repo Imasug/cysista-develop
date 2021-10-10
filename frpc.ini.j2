@@ -6,10 +6,12 @@ token = {{ lookup("community.general.passwordstore", "{{ key_name }} create=true
 
 [http]
 type = http
+local_ip = 10.0.2.15
 local_port = 80
 custom_domains = *.{{ domain }}
 
 [https]
 type = https
+local_ip = 10.0.2.15
 local_port = 443
 custom_domains = *.{{ domain }}

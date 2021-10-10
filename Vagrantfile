@@ -76,8 +76,8 @@ Vagrant.configure("2") do |config|
         "domain" => "cysista.online"
       }
     }
-    ansible.galaxy_role_file = "requirements.yml"
     ansible.playbook = "playbook.yml"
+    ansible.galaxy_role_file = "requirements.yml"
     ansible.galaxy_command = "ansible-galaxy role install -r %{role_file} -f && ansible-galaxy collection install -r %{role_file} -f"
   end
 

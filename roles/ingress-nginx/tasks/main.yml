@@ -1,0 +1,19 @@
+---
+- name: Add chart repo
+  kubernetes.core.helm_repository:
+    name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+- name: Install
+  kubernetes.core.helm:
+    name: ingress-nginx
+    atomic: yes
+    chart_ref: ingress-nginx/ingress-nginx
+    create_namespace: yes
+    namespace: ingress-nginx
+    update_repo_cache: yes
+    wait: yes
+    values:
+      controller:
+        service:
+          externalIPs:
+            - 10.0.2.15
