@@ -1,0 +1,41 @@
+---
+- name: Download frp
+  ansible.builtin.unarchive:
+    src: "https://github.com/fatedier/frp/releases/download/v{{ frp_version }}/frp_{{ frp_version }}_linux_amd64.tar.gz"
+    dest: /opt
+    remote_src: yes
+    extra_opts:
+      - --transform
+      - s,^[^/]+,frp,x
+- name: Update frpc configs
+  ansible.builtin.template:
+    src: "{{ frpc_ini_file }}"
+    dest: /opt/frp/frpc.ini
+- name: Allow to use reserved ports
+  ansible.builtin.lineinfile:
+    path: /opt/frp/systemd/frpc.service
+    regexp: "^User=.+$"
+    state: absent
+- name: Create frp directory
+  ansible.builtin.file:
+    path: /etc/frp
+    state: directory
+    mode: "0755"
+- name: Create symbolic links
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - { src: /opt/frp/frpc, dest: /usr/bin/frpc }
+    - {
+        src: /opt/frp/systemd/frpc.service,
+        dest: /etc/systemd/system/frpc.service,
+      }
+    - { src: /opt/frp/frpc.ini, dest: /etc/frp/frpc.ini }
+- name: Enable frpc
+  ansible.builtin.systemd:
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+    name: frpc

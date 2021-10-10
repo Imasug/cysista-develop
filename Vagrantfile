@@ -69,6 +69,12 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   config.vm.provision "ansible" do |ansible|
+    ansible.become = true
+    ansible.groups = {
+      "all:vars" => {
+        "domain" => "cysista.online"
+      }
+    }
     ansible.playbook = "playbook.yml"
   end
 

@@ -1,6 +1,8 @@
 ---
 - hosts: default
-  tasks:
-    - name: test
-      debug:
-        msg: test
+  gather_facts: no
+  roles:
+    - role: frpc
+      vars:
+        key_name: cysista-proxy/frps
+        frpc_ini_file: frpc.ini.j2

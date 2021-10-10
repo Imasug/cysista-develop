@@ -1,0 +1,11 @@
+== Cysista-Develop
+
+== Requirements
+
+本コードを実行するには下記を事前に準備する必要がある。
+
+* Vagrant
+* Ansible
+* VirtualBox
+* pass
+* Cysista-Proxy
