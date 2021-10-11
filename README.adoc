@@ -9,3 +9,8 @@
 * VirtualBox
 * pass
 * Cysista-Proxy
+
+== References
+
+* https://docs.gitlab.com/charts/development/minikube/
+* https://docs.gitlab.com/charts/

@@ -27,3 +27,4 @@
     - ingress-nginx
     - cert-manager
     - kube-prometheus-stack
+    - gitlab
