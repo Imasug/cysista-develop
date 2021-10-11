@@ -35,3 +35,4 @@
     - kube-prometheus-stack
     - gitlab
     - argo-cd
+    - journald
