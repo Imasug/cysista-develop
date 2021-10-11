@@ -1,0 +1,29 @@
+---
+- name: Add chart repo
+  kubernetes.core.helm_repository:
+    name: argo
+    url: https://argoproj.github.io/argo-helm
+- name: Install
+  kubernetes.core.helm:
+    name: argocd
+    atomic: yes
+    chart_ref: argo/argo-cd
+    create_namespace: yes
+    namespace: argocd
+    update_repo_cache: yes
+    wait: yes
+    values:
+      server:
+        extraArgs:
+          - --insecure
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/tls-acme: "true"
+          ingressClassName: nginx
+          hosts:
+            - "argocd.{{ domain }}"
+          tls:
+            - secretName: argocd-tls
+              hosts:
+                - "argocd.{{ domain }}"

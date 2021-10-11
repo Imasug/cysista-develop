@@ -34,3 +34,4 @@
     - cert-manager
     - kube-prometheus-stack
     - gitlab
+    - argo-cd
