@@ -5,13 +5,19 @@
     - name: Refresh snap
       ansible.builtin.shell:
         cmd: snap refresh
+    - name: Install snap packages
+      community.general.snap:
+        name: "{{ item }}"
+      with_items:
+        - docker
     - name: Update apt package list
       ansible.builtin.apt:
         update_cache: yes
-    - name: Install base dependencies
+    - name: Install apt packages
       ansible.builtin.apt:
         name: "{{ item }}"
       with_items:
+        - ncdu
         - python3-pip
     - name: Install kubernetes package
       ansible.builtin.pip:
