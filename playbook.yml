@@ -36,3 +36,6 @@
     - gitlab
     - argo-cd
     - journald
+    - role: wordpress
+      vars:
+        key_name: cysista-develop/wordpress

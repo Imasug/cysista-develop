@@ -1,0 +1,25 @@
+---
+- name: Add chart repo
+  kubernetes.core.helm_repository:
+    name: bitnami
+    url: https://charts.bitnami.com/bitnami
+- name: Install
+  kubernetes.core.helm:
+    name: wordpress
+    atomic: yes
+    chart_ref: bitnami/wordpress
+    create_namespace: yes
+    namespace: wordpress
+    update_repo_cache: yes
+    wait: yes
+    values:
+      wordpressPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'
+      service:
+        type: ClusterIP
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        hostname: "wordpress.{{ domain }}"
+        annotations:
+          kubernetes.io/tls-acme: "true"
+        tls: true
