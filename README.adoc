@@ -12,5 +12,9 @@
 
 == References
 
-* https://docs.gitlab.com/charts/development/minikube/
-* https://docs.gitlab.com/charts/
+* https://docs.gitlab.com/charts[GitLab Helm Chart 概要]
+* https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml[GitLab Helm Chart values.yaml]
+* https://docs.gitlab.com/charts/development/minikube/#deploying-gitlab-with-minimal-settings[GitLab Helm Chart 最小構成例]
+* https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration[GitLab Runner Helm Chart 設定方法]
+* https://docs.gitlab.com/runner/configuration/advanced-configuration.html[GitLab Runner 設定詳細]
+* https://docs.gitlab.com/runner/executors/kubernetes.html#using-docker-in-your-builds[GitLab Runner Kubernetes executor Docker利用方法]

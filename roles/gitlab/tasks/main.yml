@@ -41,7 +41,16 @@
       prometheus:
         install: false
       gitlab-runner:
-        install: false
+        runners:
+          config: |
+            [[runners]]
+              [runners.kubernetes]
+                image = "docker:19.03.12"
+                [[runners.kubernetes.volumes.host_path]]
+                  name = "docker"
+                  mount_path = "/var/run/docker.sock"
+                  host_path = "/var/run/docker.sock"
+      # TODO Cache
       # Reduce replica counts, reducing CPU & memory requirements
       gitlab:
         webservice:
