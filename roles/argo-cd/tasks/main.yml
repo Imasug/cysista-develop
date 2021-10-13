@@ -1,29 +1,26 @@
 ---
 - name: Add chart repo
   kubernetes.core.helm_repository:
-    name: argo
-    url: https://argoproj.github.io/argo-helm
+    name: bitnami
+    url: https://charts.bitnami.com/bitnami
 - name: Install
   kubernetes.core.helm:
     name: argocd
-    atomic: yes
-    chart_ref: argo/argo-cd
+    chart_ref: bitnami/argo-cd
     create_namespace: yes
     namespace: argocd
     update_repo_cache: yes
-    wait: yes
     values:
+      config:
+        secret:
+          argocdServerAdminPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'
       server:
         extraArgs:
           - --insecure
         ingress:
           enabled: true
           annotations:
+            kubernetes.io/ingress.class: nginx
             kubernetes.io/tls-acme: "true"
-          ingressClassName: nginx
-          hosts:
-            - "argocd.{{ domain }}"
-          tls:
-            - secretName: argocd-tls
-              hosts:
-                - "argocd.{{ domain }}"
+          hostname: "argocd.{{ domain }}"
+          tls: true

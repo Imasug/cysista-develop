@@ -6,12 +6,10 @@
 - name: Install
   kubernetes.core.helm:
     name: kube-prometheus-stack
-    atomic: yes
     chart_ref: prometheus-community/kube-prometheus-stack
     create_namespace: yes
     namespace: kube-prometheus-stack
     update_repo_cache: yes
-    wait: yes
     values:
       prometheus:
         prometheusSpec:
@@ -24,6 +22,7 @@
                   requests:
                     storage: "{{ prometheus.storage }}"
       grafana:
+        adminPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'
         ingress:
           enabled: true
           annotations:

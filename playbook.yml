@@ -25,6 +25,7 @@
       with_items:
         - openshift
   roles:
+    - journald
     - role: frpc
       vars:
         key_name: cysista-proxy/frps
@@ -32,10 +33,15 @@
     - microk8s
     - ingress-nginx
     - cert-manager
-    - kube-prometheus-stack
-    - gitlab
-    - argo-cd
-    - journald
+    - role: kube-prometheus-stack
+      vars:
+        key_name: cysista-develop/kube-prometheus-stack
+    - role: gitlab
+      vars:
+        key_name: cysista-develop/gitlab
+    - role: argo-cd
+      vars:
+        key_name: cysista-develop/argo-cd
     - role: wordpress
       vars:
         key_name: cysista-develop/wordpress

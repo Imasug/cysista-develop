@@ -20,8 +20,8 @@
         defaultIssuerGroup: "cert-manager.io"
 - name: Create ClusterIssuer manifest file
   ansible.builtin.template:
-    src: letsencrypt-prod.yaml.j2
-    dest: /tmp/letsencrypt-prod.yaml
+    src: letsencrypt-prod.yml.j2
+    dest: /tmp/letsencrypt-prod.yml
 - name: Create ClusterIssuer
   kubernetes.core.k8s:
-    src: /tmp/letsencrypt-prod.yaml
+    src: /tmp/letsencrypt-prod.yml

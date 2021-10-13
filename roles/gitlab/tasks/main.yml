@@ -1,4 +1,19 @@
 ---
+- name: Create gitlab namespace
+  kubernetes.core.k8s:
+    name: gitlab
+    api_version: v1
+    kind: Namespace
+- name: Create root password secret
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: gitlab-gitlab-initial-root-password
+        namespace: gitlab
+      data:
+        password: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") | b64encode }}'
 - name: Add chart repo
   kubernetes.core.helm_repository:
     name: gitlab
@@ -6,13 +21,9 @@
 - name: Install
   kubernetes.core.helm:
     name: gitlab
-    atomic: yes
     chart_ref: gitlab/gitlab
-    create_namespace: yes
     namespace: gitlab
     update_repo_cache: yes
-    wait: yes
-    wait_timeout: 60m
     values:
       # Minimal settings
       global:

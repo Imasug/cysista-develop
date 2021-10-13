@@ -6,12 +6,10 @@
 - name: Install
   kubernetes.core.helm:
     name: wordpress
-    atomic: yes
     chart_ref: bitnami/wordpress
     create_namespace: yes
     namespace: wordpress
     update_repo_cache: yes
-    wait: yes
     values:
       wordpressPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'
       service:
