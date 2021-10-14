@@ -1,14 +1,34 @@
 == Cysista-Develop
 
+Cysista-Developはサイジスタ用開発環境を構築するプロジェクトである。 +
+本プロジェクトは「Infrastructure as Code」を実現しているため、コマンドを1回実行するだけでサーバーの構築が可能である。 +
+
+本コードにより構築されるサーバーはGitLabとKubernetesを利用しておりCI/CD環境として機能する。 +
+また、情報共有用にWordpressをインストールしている。
+
 == Requirements
 
 本コードを実行するには下記を事前に準備する必要がある。
 
-* Vagrant
+* Vagrant、vagrant-disksize plugin
 * Ansible
 * VirtualBox
 * pass
 * Cysista-Proxy
+
+== Run
+
+* 下記のコマンドにて起動する。
+
+```
+vagrant up
+```
+
+* 下記のコマンドにてplaybookを実行する。
+
+```
+vagrant provision
+```
 
 == References
 
