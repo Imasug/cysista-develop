@@ -13,7 +13,17 @@
         name: gitlab-gitlab-initial-root-password
         namespace: gitlab
       data:
-        password: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") | b64encode }}'
+        password: '{{ lookup("community.general.passwordstore", "{{ root_key_name }} create=true length=20") | b64encode }}'
+- name: Create smtp password secret
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: gitlab-smtp-password
+        namespace: gitlab
+      data:
+        password: '{{ lookup("community.general.passwordstore", "{{ smtp_key_name }}") | b64encode }}'
 - name: Add chart repo
   kubernetes.core.helm_repository:
     name: gitlab
@@ -42,6 +52,22 @@
           # Configure the clone link in the UI to include the high-numbered NodePort
           # value from below (`gitlab.gitlab-shell.service.nodePort`)
           port: 32022
+        ## https://docs.gitlab.com/charts/installation/deployment#outgoing-email
+        ## Outgoing email server settings
+        smtp:
+          enabled: true
+          address: smtp.gmail.com
+          port: 587
+          user_name: "{{ email }}"
+          ## https://docs.gitlab.com/charts/installation/secrets#smtp-password
+          password:
+            secret: "gitlab-smtp-password"
+            key: password
+          # domain:
+          authentication: login
+          starttls_auto: true
+          tls: false
+          openssl_verify_mode: "peer"
       # Don't use certmanager, we'll self-sign
       certmanager:
         install: false

@@ -15,6 +15,7 @@ Cysista-Developはサイジスタ用開発環境を構築するプロジェク�
 * VirtualBox
 * pass
 * Cysista-Proxy
+* GitLabに紐づけるアカウントで [安全性の低いアプリの許可] をオフにする。
 
 == Run
 
@@ -38,3 +39,5 @@ vagrant provision
 * https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration[GitLab Runner Helm Chart 設定方法]
 * https://docs.gitlab.com/runner/configuration/advanced-configuration.html[GitLab Runner 設定詳細]
 * https://docs.gitlab.com/runner/executors/kubernetes.html#using-docker-in-your-builds[GitLab Runner Kubernetes executor Docker利用方法]
+* https://docs.gitlab.com/omnibus/settings/smtp.html[GitLab SMTP設定方法]
+* https://docs.gitlab.com/charts/installation/deployment#outgoing-email[GitLab Helm Chart SMTP設定]
