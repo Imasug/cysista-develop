@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    timestamp: '{{ lookup("pipe", "date +%Y%m%d%H%M") }}'
+  tasks:
+    # https://github.com/hashicorp/vagrant/issues/9629#issuecomment-401641453
+    - name: Execute powershell
+      ansible.builtin.shell:
+        cmd: powershell.exe
+    - name: Backup vm
+      ansible.builtin.shell:
+        cmd: "vagrant package --output {{ backup_dir }}/cysista-develop-{{ timestamp }}.box"
+    - name: Remove backups expiring the retention period
+      ansible.builtin.shell:
+        cmd: "find {{ backup_dir }}/* -mtime +{{ retention }} -exec rm {} +"
+    - name: Start vm
+      ansible.builtin.shell:
+        cmd: vagrant up
