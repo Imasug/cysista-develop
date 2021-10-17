@@ -11,7 +11,7 @@
     namespace: wordpress
     update_repo_cache: yes
     values:
-      wordpressPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'
+      wordpressPassword: '{{ lookup("community.general.passwordstore", "{{ wp_key_name }} create=true length=20") }}'
       service:
         type: ClusterIP
       ingress:
@@ -21,3 +21,7 @@
         annotations:
           kubernetes.io/tls-acme: "true"
         tls: true
+      mariadb:
+        auth:
+          rootPassword: '{{ lookup("community.general.passwordstore", "{{ wp_db_root_key_name }} create=true length=20") }}'
+          password: '{{ lookup("community.general.passwordstore", "{{ wp_db_key_name }} create=true length=20") }}'

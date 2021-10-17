@@ -45,4 +45,6 @@
         key_name: cysista-develop/argo-cd
     - role: wordpress
       vars:
-        key_name: cysista-develop/wordpress
+        wp_key_name: cysista-develop/wordpress
+        wp_db_root_key_name: cysista-develop/wordpress-db-root
+        wp_db_key_name: cysista-develop/wordpress-db
