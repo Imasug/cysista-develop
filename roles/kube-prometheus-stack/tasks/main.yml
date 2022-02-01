@@ -7,6 +7,7 @@
   kubernetes.core.helm:
     name: kube-prometheus-stack
     chart_ref: prometheus-community/kube-prometheus-stack
+    chart_version: 19.2.3
     create_namespace: yes
     namespace: kube-prometheus-stack
     update_repo_cache: yes

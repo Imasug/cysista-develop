@@ -42,6 +42,7 @@
         smtp_key_name: cysista-develop/gitlab-smtp
     - role: argo-cd
       vars:
+        redis_key_name: cysista-develop/argo-cd-redis
         key_name: cysista-develop/argo-cd
     - role: wordpress
       vars:

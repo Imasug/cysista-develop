@@ -7,10 +7,13 @@
   kubernetes.core.helm:
     name: argocd
     chart_ref: bitnami/argo-cd
+    chart_version: 2.0.11
     create_namespace: yes
     namespace: argocd
     update_repo_cache: yes
     values:
+      auth:
+        password: '{{ lookup("community.general.passwordstore", "{{ redis_key_name }} create=true length=20") }}'
       config:
         secret:
           argocdServerAdminPassword: '{{ lookup("community.general.passwordstore", "{{ key_name }} create=true length=20") }}'

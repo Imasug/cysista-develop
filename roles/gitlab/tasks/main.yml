@@ -32,6 +32,7 @@
   kubernetes.core.helm:
     name: gitlab
     chart_ref: gitlab/gitlab
+    chart_version: 5.4.1
     namespace: gitlab
     update_repo_cache: yes
     values:

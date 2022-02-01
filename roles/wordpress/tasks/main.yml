@@ -7,6 +7,7 @@
   kubernetes.core.helm:
     name: wordpress
     chart_ref: bitnami/wordpress
+    chart_version: 12.1.25
     create_namespace: yes
     namespace: wordpress
     update_repo_cache: yes

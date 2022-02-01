@@ -8,6 +8,7 @@
     name: cert-manager
     atomic: yes
     chart_ref: jetstack/cert-manager
+    chart_version: v1.6.1
     create_namespace: yes
     namespace: cert-manager
     update_repo_cache: yes

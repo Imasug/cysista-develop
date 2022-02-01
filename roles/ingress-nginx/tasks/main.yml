@@ -8,6 +8,7 @@
     name: ingress-nginx
     atomic: yes
     chart_ref: ingress-nginx/ingress-nginx
+    chart_version: 4.0.6
     create_namespace: yes
     namespace: ingress-nginx
     update_repo_cache: yes
