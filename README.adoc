@@ -5,6 +5,7 @@ Cysista-Developはサイジスタ用開発環境を構築するプロジェク�
 
 本コードにより構築されるサーバーはGitLabとKubernetesを利用しておりCI/CD環境として機能する。 +
 また、情報共有用にWordpressをインストールしている。
+(現在GitLabは動作が不安定なため一時無効化)
 
 == Requirements
 
