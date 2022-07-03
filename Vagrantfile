@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
     ansible.groups = {
       "all:vars" => {
         "domain" => "cysista.online",
-        "email" => "suguru.imanaga@gmail.com"
+        "email" => "cysista-develop@cysista.co.jp"
       }
     }
     ansible.playbook = "playbook.yml"
