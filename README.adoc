@@ -1,44 +1,22 @@
 == Cysista-Develop
 
-Cysista-Developはサイジスタ用開発環境を構築するプロジェクトである。 +
-本プロジェクトは「Infrastructure as Code」を実現しているため、コマンドを1回実行するだけでサーバーの構築が可能である。 +
-
-本コードにより構築されるサーバーはGitLabとKubernetesを利用しておりCI/CD環境として機能する。 +
-また、情報共有用にWordpressをインストールしている。
-(現在GitLabは動作が不安定なため一時無効化)
-
-== Requirements
-
-本コードを実行するには下記を事前に準備する必要がある。
+=== Requirements
 
 * Vagrant、vagrant-disksize plugin
 * Ansible
 * VirtualBox
 * pass
 * Cysista-Proxy
-* GitLabに紐づけるアカウントで [安全性の低いアプリの許可] をオフにする。
 
-== Run
-
-* 下記のコマンドにて起動する。
-
-```
-vagrant up
-```
-
-* 下記のコマンドにてplaybookを実行する。
+=== Provision
 
 ```
 vagrant provision
 ```
 
-== References
+=== Run
 
-* https://docs.gitlab.com/charts[GitLab Helm Chart 概要]
-* https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml[GitLab Helm Chart values.yaml]
-* https://docs.gitlab.com/charts/development/minikube/#deploying-gitlab-with-minimal-settings[GitLab Helm Chart 最小構成例]
-* https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration[GitLab Runner Helm Chart 設定方法]
-* https://docs.gitlab.com/runner/configuration/advanced-configuration.html[GitLab Runner 設定詳細]
-* https://docs.gitlab.com/runner/executors/kubernetes.html#using-docker-in-your-builds[GitLab Runner Kubernetes executor Docker利用方法]
-* https://docs.gitlab.com/omnibus/settings/smtp.html[GitLab SMTP設定方法]
-* https://docs.gitlab.com/charts/installation/deployment#outgoing-email[GitLab Helm Chart SMTP設定]
+```
+vagrant up
+```
+
