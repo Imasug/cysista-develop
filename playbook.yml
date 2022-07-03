@@ -37,10 +37,14 @@
         key_name: cysista-develop/kube-prometheus-stack
     - role: argo-cd
       vars:
-        redis_key_name: cysista-develop/argo-cd-redis
         key_name: cysista-develop/argo-cd
+        redis_key_name: cysista-develop/argo-cd-redis
     - role: wordpress
       vars:
-        wp_key_name: cysista-develop/wordpress
-        wp_db_root_key_name: cysista-develop/wordpress-db-root
-        wp_db_key_name: cysista-develop/wordpress-db
+        key_name: cysista-develop/wordpress
+        db_root_key_name: cysista-develop/wordpress-db-root
+        db_key_name: cysista-develop/wordpress-db
+    - role: gitea
+      vars:
+        key_name: cysista-develop/gitea
+        email_key_name: cysista-develop/email

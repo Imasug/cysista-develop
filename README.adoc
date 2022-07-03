@@ -20,3 +20,7 @@ vagrant provision
 vagrant up
 ```
 
+=== References
+
+* https://gitea.com/gitea/helm-chart/
+* https://www.passwordstore.org/
