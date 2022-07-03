@@ -7,7 +7,7 @@
   kubernetes.core.helm:
     name: wordpress
     chart_ref: bitnami/wordpress
-    chart_version: 12.1.25
+    chart_version: 12.3.3
     create_namespace: yes
     namespace: wordpress
     update_repo_cache: yes
@@ -17,10 +17,10 @@
         type: ClusterIP
       ingress:
         enabled: true
-        ingressClassName: "nginx"
-        hostname: "wordpress.{{ domain }}"
         annotations:
+          kubernetes.io/ingress.class: nginx
           kubernetes.io/tls-acme: "true"
+        hostname: "wordpress.{{ domain }}"
         tls: true
       mariadb:
         auth:
