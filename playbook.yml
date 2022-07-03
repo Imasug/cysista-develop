@@ -36,10 +36,6 @@
     - role: kube-prometheus-stack
       vars:
         key_name: cysista-develop/kube-prometheus-stack
-    # - role: gitlab
-    #   vars:
-    #     root_key_name: cysista-develop/gitlab
-    #     smtp_key_name: cysista-develop/gitlab-smtp
     - role: argo-cd
       vars:
         redis_key_name: cysista-develop/argo-cd-redis
