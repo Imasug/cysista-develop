@@ -9,7 +9,7 @@
       - s,^[^/]+,frp,x
 - name: Update frpc configs
   ansible.builtin.template:
-    src: "{{ frpc_ini_file }}"
+    src: frpc.ini.j2
     dest: /opt/frp/frpc.ini
 - name: Allow to use reserved ports
   ansible.builtin.lineinfile:

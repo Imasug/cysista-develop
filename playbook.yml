@@ -29,7 +29,6 @@
     - role: frpc
       vars:
         key_name: cysista-proxy/frps
-        frpc_ini_file: frpc.ini.j2
     - microk8s
     - ingress-nginx
     - cert-manager
